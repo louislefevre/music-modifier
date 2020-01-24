@@ -1,7 +1,6 @@
+import sys
 import os
 from mutagen.easyid3 import EasyID3
-from operator import itemgetter
-
 
 ################################################################################
 def searchDirectories(path):
@@ -133,19 +132,21 @@ def printAllArtists(artists):
 
 ################################################################################
 def printFeatures():
-    print('-----Welcome to Music Modifier!-----')
+    print('-----------Music Modifier-----------')
     print('RemoveNumbers - Removes numbers at the beginning of song names.')
+    print('ShowMusic - View all the artists, albums and tracks.')
     print('Exit - Terminates the program.')
     print('------------------------------------')
 
 def main():
-    path = 'D:\Libraries\Music\iTunes\iTunes Media\Music'
+    #path = sys.argv[1] # Removed for testing
+    path = 'D:\Libraries\Music\iTunes\iTunes Media\MusicTest'
     printFeatures()
     while(True):
         user_input = input('Select a feature: ').lower()
         if user_input == 'removenumbers':
             searchDirectories(path)
-        elif user_input == 't':
+        elif user_input == 'showmusic':
             getAllArtists(path)
             break
         elif user_input == 'exit':
@@ -155,16 +156,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-# Retrieve the title of the song and use that instead?
-
-# Create functionality to export music data to text file (organised by bands, albums, etc)
-
-# Before running getArtistData, run a check to ensure all files have the relevant information.
-
-# Add functionality to automatically organise new music. For example, give it a song with the band
-# the album, position, etc, and it will automatically move it to the correct location. If the location
-# doesnt exist, it will create it.
-
-# Combinate file search functions to a single function, with different methods being passed or something.
