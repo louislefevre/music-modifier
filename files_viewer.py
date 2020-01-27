@@ -2,6 +2,15 @@ import os
 from mutagen.easyid3 import EasyID3
 from utilities import file_iterator
 
+class Playlist:
+    all_artists = []
+    @staticmethod
+    def add_artist(artist):
+        Playlist.all_artists.append(artist)
+    @staticmethod
+    def get_artists():
+        return Playlist.all_artists
+
 class Artist:
     def __init__(self, name):
         self.name = name
@@ -33,7 +42,7 @@ class Track:
 def display_all_artists(path):
     artists = get_all_artists(path)
     for artist in artists:
-        print('--' + artist.get_name())
+        print('-' + artist.get_name())
         for album in artist.get_albums():
             print(' -' + album.get_name())
             for track in album.get_tracks():
@@ -42,43 +51,45 @@ def display_all_artists(path):
 
 def get_all_artists(path):
     file_paths = file_iterator(path)
-    all_artists = []
+    playlist = Playlist
     for file_path in file_paths:
-        get_artist_data(file_path, all_artists)
-    return all_artists
+        track = get_track(file_path, playlist)
+        create_artist(track, playlist)
+    return playlist.all_artists
 
-def get_artist_data(file_path, all_artists):
+def get_track(file_path, playlist):
     audio = EasyID3(file_path)
     title = ''.join(audio['title'])
     artist = ''.join(audio['artist'])
     album = ''.join(audio['album'])
     track_info = {'title':title, 'artist':artist, 'album':album}
-    create_artist(track_info, all_artists)
+    return track_info
 
-def create_artist(track_info, all_artists):
-    artist_name = track_info.get('artist')
-    for artist in all_artists:
-        if artist.get_name() == artist_name:
-            create_album(track_info, artist)
-            return
-    artist = Artist(artist_name)
-    all_artists.append(artist)
-    create_album(track_info, artist)
+def create_artist(track, playlist):
+    artist_name = track.get('artist')
+    artist = check_exists(artist_name, playlist.get_artists())
+    if not artist:
+        artist = Artist(artist_name)
+        playlist.add_artist(artist)
+    create_album(track, artist)
 
-def create_album(track_info, artist):
-    album_name = track_info.get('album')
-    for album in artist.get_albums():
-        if album.get_name() == album_name:
-            create_track(track_info, album)
-            return
-    album = Album(album_name)
-    artist.add_album(album)
-    create_track(track_info, album)
+def create_album(track, artist):
+    album_name = track.get('album')
+    album = check_exists(album_name, artist.get_albums())
+    if not album:
+        album = Album(album_name)
+        artist.add_album(album)
+    create_track(track, album)
 
-def create_track(track_info, album):
-    track_name = track_info.get('title')
-    for track in album.get_tracks():
-        if track.get_name() == track_name:
-            return
-    track = Track(track_name)
-    album.add_track(track)
+def create_track(track, album):
+    track_name = track.get('title')
+    track = check_exists(track_name, album.get_tracks())
+    if not track:
+        track = Track(track_name)
+        album.add_track(track)
+
+def check_exists(name, array):
+    for item in array:
+        if item.get_name() == name:
+            return item
+    return None
