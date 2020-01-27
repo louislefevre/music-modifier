@@ -1,11 +1,13 @@
 import sys
-from files_viewer import display_all_artists
 from numbers_remover import search_directories
+from files_viewer import display_all_artists
+from files_viewer import file_to_text
 
 def print_features():
     print('-----------Music Modifier-----------')
     print('RemoveNumbers - Removes numbers at the beginning of song names.')
     print('ShowMusic - View all the artists, albums and tracks.')
+    print('ToText - Write a log of your entire playlist to a text file.')
     print('Exit - Terminates the program.')
     print('------------------------------------')
 
@@ -19,6 +21,9 @@ def main():
             search_directories(path)
         elif user_input == 'showmusic':
             display_all_artists(path)
+            break
+        elif user_input == 'totext':
+            file_to_text(path)
             break
         elif user_input == 'exit':
             break

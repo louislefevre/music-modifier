@@ -1,46 +1,12 @@
-import os
-from mutagen.easyid3 import EasyID3
-from utilities import file_iterator
-
-class Playlist:
-    all_artists = []
-    @staticmethod
-    def add_artist(artist):
-        Playlist.all_artists.append(artist)
-    @staticmethod
-    def get_artists():
-        return Playlist.all_artists
-
-class Artist:
-    def __init__(self, name):
-        self.name = name
-        self.albums = []
-    def get_name(self):
-        return self.name
-    def get_albums(self):
-        return self.albums
-    def add_album(self, album):
-        self.albums.append(album)
-
-class Album:
-    def __init__(self, name):
-        self.name = name
-        self.tracks = []
-    def get_name(self):
-        return self.name
-    def get_tracks(self):
-        return self.tracks
-    def add_track(self, track):
-        self.tracks.append(track)
-
-class Track:
-    def __init__(self, name):
-        self.name = name
-    def get_name(self):
-        return self.name
+from playlist_data import new_playlist
+from playlist_data import Playlist
+from playlist_data import Artist
+from playlist_data import Album
+from playlist_data import Track
 
 def display_all_artists(path):
-    artists = get_all_artists(path)
+    playlist = new_playlist(path)
+    artists = playlist.get_artists()
     for artist in artists:
         print('-' + artist.get_name())
         for album in artist.get_albums():
@@ -48,48 +14,29 @@ def display_all_artists(path):
             for track in album.get_tracks():
                 print('  -' + track.get_name())
         print('')
+    display_counters()
 
-def get_all_artists(path):
-    file_paths = file_iterator(path)
-    playlist = Playlist
-    for file_path in file_paths:
-        track = get_track(file_path, playlist)
-        create_artist(track, playlist)
-    return playlist.all_artists
+def display_counters():
+    print('Artists: ' + str(Artist.get_counter()))
+    print('Albums: ' + str(Album.get_counter()))
+    print('Tracks: ' + str(Track.get_counter()))
 
-def get_track(file_path, playlist):
-    audio = EasyID3(file_path)
-    title = ''.join(audio['title'])
-    artist = ''.join(audio['artist'])
-    album = ''.join(audio['album'])
-    track_info = {'title':title, 'artist':artist, 'album':album}
-    return track_info
+def file_to_text(path):
+    playlist = new_playlist(path)
+    artists = playlist.get_artists()
+    file = create_file(playlist)
+    for artist in artists:
+        file.write('-' + artist.get_name() + '\n')
+        for album in artist.get_albums():
+            file.write(' -' + album.get_name() + '\n')
+            for track in album.get_tracks():
+                file.write('  -' + track.get_name() + '\n')
+        file.write('\n')
+    file.close()
 
-def create_artist(track, playlist):
-    artist_name = track.get('artist')
-    artist = check_exists(artist_name, playlist.get_artists())
-    if not artist:
-        artist = Artist(artist_name)
-        playlist.add_artist(artist)
-    create_album(track, artist)
-
-def create_album(track, artist):
-    album_name = track.get('album')
-    album = check_exists(album_name, artist.get_albums())
-    if not album:
-        album = Album(album_name)
-        artist.add_album(album)
-    create_track(track, album)
-
-def create_track(track, album):
-    track_name = track.get('title')
-    track = check_exists(track_name, album.get_tracks())
-    if not track:
-        track = Track(track_name)
-        album.add_track(track)
-
-def check_exists(name, array):
-    for item in array:
-        if item.get_name() == name:
-            return item
-    return None
+def create_file(playlist):
+    name = input('Enter playlist name (leave blank for default): ').strip()
+    if not name:
+        name = playlist.get_name()
+    file = open(name + '.txt', 'w')
+    return file
