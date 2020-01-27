@@ -1,5 +1,5 @@
 import sys
-from files_viewer import get_all_artists
+from files_viewer import display_all_artists
 from numbers_remover import search_directories
 
 def print_features():
@@ -18,7 +18,7 @@ def main():
         if user_input == 'removenumbers':
             search_directories(path)
         elif user_input == 'showmusic':
-            get_all_artists(path)
+            display_all_artists(path)
             break
         elif user_input == 'exit':
             break

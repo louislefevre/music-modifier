@@ -1,46 +1,48 @@
 import os
+from utilities import file_iterator
 
 def search_directories(path):
-    file_types = ('.mp3', '.m4a')
+    file_paths = file_iterator(path)
     file_changes = []
-    for sub_dir, dirs, files in os.walk(path):
-        for file in files:
-            if file.endswith(file_types) and file[0:2].isdigit() and file[2].isspace():
-                new_file = file[3:]
-                old_path = os.path.join(sub_dir, file)
-                new_path = os.path.join(sub_dir, new_file)
-                if os.path.exists(new_path):
-                    print(f'File name "{new_file}" already exists, skipping... ({new_path})')
-                else:
-                    file_changes.append([file, new_file, old_path, new_path])
-    request_permission(file_changes)
+    for file_path in file_paths:
+        file_dir, file_name = os.path.split(file_path)
+        if file_name[0:2].isdigit() and file_name[2].isspace():
+            new_name = file_name[3:]
+            new_path = os.path.join(file_dir, new_name)
+            file_info = {'old_name': file_name, 'new_name': new_name, 'old_path': file_path, 'new_path': new_path}
+            file_changes.append(file_info)
+    rename_files(file_changes)
 
-def request_permission(file_changes):
+def rename_files(file_changes):
     if not file_changes:
         print('No files need to be renamed.')
         return
+    if not request_permission(file_changes):
+        return
+    for item in file_changes:
+        try:
+            os.rename(item.get('old_path'), item.get('new_path'))
+            print(f'Renamed "{item.get("old_name")}" to "{item.get("new_name")}"')
+        except FileNotFoundError:
+            print('')
+            print(f'Could not find file "{item.get("old_name")}", skipping...')
+        except FileExistsError:
+            print('')
+            print(f'File name "{item.get("new_name")}" already exists, skipping...')
+
+def request_permission(file_changes):
     list_changes(file_changes)
     while True:
         request = input('The files listed will be changed. Do you want to proceed? [yes/no]').lower()
         if request == 'yes':
-            break;
+            return True
         elif request == 'no':
             print('Process cancelled, returning to menu...')
-            return
+            return False
         else:
             print('Invalid input - please enter "yes" or "no".')
-    rename_files(file_changes)
 
 def list_changes(file_changes):
     for item in file_changes:
-        print(f'"{item[0]}" will be renamed to "{item[1]}"')
-
-def rename_files(file_changes):
-    for item in file_changes:
-        try:
-            os.rename(item[2], item[3])
-            print(f'Renamed "{item[0]}" to "{item[1]}"')
-        except FileNotFoundError:
-            print(f'Could not find file "{item[0]}", skipping...')
-        except FileExistsError:
-            print(f'File name "{item[0]}" already exists, skipping...')
+        print('')
+        print(f'"{item.get("old_name")}" will be renamed to "{item.get("new_name")}"')

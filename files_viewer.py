@@ -1,5 +1,6 @@
 import os
 from mutagen.easyid3 import EasyID3
+from utilities import file_iterator
 
 class Artist:
     def __init__(self, name):
@@ -29,15 +30,22 @@ class Track:
     def get_name(self):
         return self.name
 
+def display_all_artists(path):
+    artists = get_all_artists(path)
+    for artist in artists:
+        print('--' + artist.get_name())
+        for album in artist.get_albums():
+            print(' -' + album.get_name())
+            for track in album.get_tracks():
+                print('  -' + track.get_name())
+        print('')
+
 def get_all_artists(path):
-    file_types = ('.mp3')
+    file_paths = file_iterator(path)
     all_artists = []
-    for sub_dir, dirs, files in os.walk(path):
-        for file in files:
-            if file.endswith(file_types):
-                file_path = os.path.join(sub_dir, file)
-                get_artist_data(file_path, all_artists)
-    print_all_artists(all_artists)
+    for file_path in file_paths:
+        get_artist_data(file_path, all_artists)
+    return all_artists
 
 def get_artist_data(file_path, all_artists):
     audio = EasyID3(file_path)
@@ -74,12 +82,3 @@ def create_track(track_info, album):
             return
     track = Track(track_name)
     album.add_track(track)
-
-def print_all_artists(artists):
-    for artist in artists:
-        print('--' + artist.get_name())
-        for album in artist.get_albums():
-            print(' -' + album.get_name())
-            for track in album.get_tracks():
-                print('  -' + track.get_name())
-        print('')
