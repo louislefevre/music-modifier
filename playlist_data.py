@@ -1,8 +1,17 @@
 import os
+from abc import ABC, abstractmethod
 from mutagen.easyid3 import EasyID3
 from utilities import file_iterator
 
-class Playlist:
+class Music(ABC):
+    @abstractmethod
+    def get_name(self):
+        pass
+    @abstractmethod
+    def get_counter():
+        pass
+
+class Playlist(Music):
     _counter = 0
     def __init__(self):
         self.name = 'playlist'
@@ -16,10 +25,11 @@ class Playlist:
         self.all_artists.append(artist)
     def get_artists(self):
         return self.all_artists
+    @staticmethod
     def get_counter():
         return Playlist._counter
 
-class Artist:
+class Artist(Music):
     _counter = 0
     def __init__(self, name):
         self.name = name
@@ -35,7 +45,7 @@ class Artist:
     def get_counter():
         return Artist._counter
 
-class Album:
+class Album(Music):
     _counter = 0
     def __init__(self, name):
         self.name = name
@@ -51,7 +61,7 @@ class Album:
     def get_counter():
         return Album._counter
 
-class Track:
+class Track(Music):
     _counter = 0
     def __init__(self, name):
         self.name = name
