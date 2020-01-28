@@ -1,10 +1,13 @@
 # Music Modifier
 Simple script for modifying and viewing music files.  
 
+Currently only works with mp3 files.
+
 ## To-Do:
-- Retrieve the title of the song and use that instead?  
+- Rename files based on song title. Do this by retrieving the song title and changing the name, possibly in numbers_remover.
 - Before running getArtistData, run a check to ensure all files have the relevant information.  
-- Add functionality to automatically organise new music. For example, give it a song with the band the album, position, etc, and it will automatically move it to the correct location. If the location doesn't exist, it will create it.  
+- Get .m4a files to work in playlist_data.
+- Attach original path to track objects.
 
 ## Miscellaneous
 - Naming conventions should be followed as defined here:  
