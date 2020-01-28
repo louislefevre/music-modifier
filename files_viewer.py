@@ -1,11 +1,10 @@
-from playlist_data import new_playlist
-from playlist_data import Playlist
-from playlist_data import Artist
-from playlist_data import Album
-from playlist_data import Track
+from playlist_data import new_playlist, Playlist, Artist, Album, Track
 
-def display_all_artists(path):
+def display_playlist(path):
     playlist = new_playlist(path)
+    print_playlist(playlist)
+
+def print_playlist(playlist):
     artists = playlist.get_artists()
     for artist in artists:
         print('-' + artist.get_name())

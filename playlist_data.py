@@ -13,14 +13,19 @@ class Music(ABC):
 
 class Playlist(Music):
     _counter = 0
-    def __init__(self):
+    def __init__(self, path):
         self.name = 'playlist'
+        self.path = path
         self.all_artists = []
         Playlist._counter += 1
     def get_name(self):
         return self.name
     def add_name(self, name):
         self.name = name
+    def get_path(self):
+        return self.path
+    def add_path(self, path):
+        self.path = path
     def add_artist(self, artist):
         self.all_artists.append(artist)
     def get_artists(self):
@@ -74,7 +79,7 @@ class Track(Music):
 
 def new_playlist(path):
     file_paths = file_iterator(path)
-    playlist = Playlist()
+    playlist = Playlist(path)
     for file_path in file_paths:
         track = get_track(file_path, playlist)
         create_artist(track, playlist)
