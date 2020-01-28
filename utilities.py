@@ -26,7 +26,7 @@ def request_permission():
         else:
             print('Invalid input - please enter "yes" or "no".')
 
-def validate_path():
+def input_path():
     while True:
         path = input('Enter the path: ')
         if os.path.isdir(path):

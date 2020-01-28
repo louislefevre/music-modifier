@@ -2,7 +2,7 @@ import sys
 from numbers_remover import search_directories
 from files_viewer import display_playlist, file_to_text
 from add_music import add_tracks
-from utilities import validate_path, quit_program
+from utilities import input_path, quit_program
 
 def print_features():
     print('----------------------Music Modifier----------------------')
@@ -18,7 +18,7 @@ def print_features():
 
 def main():
     print_features()
-    path = validate_path() # path = 'D:\Libraries\Music\iTunes\iTunes Media\Testing\DestinationTest'
+    path = input_path() # path = 'D:\Libraries\Music\iTunes\iTunes Media\Testing\DestinationTest'
     while(True):
         user_input = input('Select a feature: ').lower()
         if user_input == 'playlist':

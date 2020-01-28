@@ -2,10 +2,10 @@ import os
 import shutil
 from playlist_data import new_playlist
 from files_viewer import display_playlist
-from utilities import request_permission, validate_path, extensions
+from utilities import request_permission, input_path, extensions
 
 def add_tracks(dest_path):
-    src_path = validate_path()
+    src_path = input_path()
     src = get_src(src_path)
     dest = get_dest(dest_path)
     if not request_permission():
