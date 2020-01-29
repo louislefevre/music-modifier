@@ -6,21 +6,11 @@ from utilities import request_permission, input_path, extensions
 
 def add_tracks(dest_path):
     src_path = input_path()
-    src = get_src(src_path)
-    dest = get_dest(dest_path)
+    src = new_playlist(src_path)
+    dest = new_playlist(dest_path)
     if not request_permission():
         return
     compare_playlists(src, dest)
-
-def get_src(path):
-    playlist = new_playlist(path)
-    playlist.add_name('source_playlist')
-    return playlist
-
-def get_dest(path):
-    playlist = new_playlist(path)
-    playlist.add_name('destination_playlist')
-    return playlist
 
 def compare_playlists(src, dest):
     dest_dir = dest.get_path()
