@@ -2,19 +2,19 @@ import os
 import shutil
 from playlist import Playlist
 from files_viewer import display_playlist
-from utilities import request_permission, input_path, extensions
+from utilities import request_permission, input_dir, extensions
 
-def add_tracks(dest_path):
-    src_path = input_path()
-    src = Playlist(src_path)
-    dest = Playlist(dest_path)
+def add_tracks(dest_dir):
+    src_dir = input_dir()
+    src = Playlist(src_dir)
+    dest = Playlist(dest_dir)
     if not request_permission():
         return
     compare_playlists(src, dest)
 
 def compare_playlists(src, dest):
-    dest_dir = dest.get_path()
-    src_dir = src.get_path()
+    dest_dir = dest.get_dir()
+    src_dir = src.get_dir()
     for src_artist in src.get_artists():
             for src_album in src_artist.get_albums():
                     for src_track in src_album.get_tracks():

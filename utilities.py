@@ -26,16 +26,16 @@ def request_permission():
         else:
             print('Invalid input - please enter "yes" or "no".')
 
-def input_path():
+def input_dir():
     while True:
-        path = input('Enter the path: ')
-        if os.path.isdir(path):
+        dir = input('Enter the directory: ')
+        if os.path.isdir(dir):
             break
-        elif path == 'exit':
+        elif dir == 'exit':
             quit_program()
         else:
-            print('Invalid path.')
-    return path
+            print('Invalid directory.')
+    return dir
 
 def quit_program():
     print('Thank you for using Music Modifier, goodbye...')

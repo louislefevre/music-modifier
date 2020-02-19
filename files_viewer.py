@@ -3,8 +3,8 @@ from artist import Artist
 from album import Album
 from track import Track
 
-def display_playlist(path):
-    playlist = Playlist(path)
+def display_playlist(dir):
+    playlist = Playlist(dir)
     print_playlist(playlist)
 
 def print_playlist(playlist):
@@ -23,8 +23,8 @@ def display_counters():
     print('Albums: ' + str(Album.get_counter()))
     print('Tracks: ' + str(Track.get_counter()))
 
-def file_to_text(path):
-    playlist = new_playlist(path)
+def file_to_text(dir):
+    playlist = Playlist(dir)
     artists = playlist.get_artists()
     file = create_file(playlist)
     for artist in artists:

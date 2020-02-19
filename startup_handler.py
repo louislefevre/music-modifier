@@ -18,17 +18,17 @@ def print_features():
 
 def main():
     print_features()
-    path = 'D:\Libraries\Music\iTunes\iTunes Media\Testing\MusicTest' # input_path()
+    dir = 'D:\Libraries\Music\iTunes\iTunes Media\Testing\MusicTest' # input_path()
     while(True):
         user_input = input('Select a feature: ').lower()
         if user_input == 'playlist':
-            display_playlist(path)
+            display_playlist(dir)
         elif user_input == 'totext':
-            file_to_text(path)
+            file_to_text(dir)
         elif user_input == 'addtracks':
-            add_tracks(path)
+            add_tracks(dir)
         elif user_input == 'removenumbers':
-            search_directories(path)
+            search_directories(dir)
         elif user_input == 'exit':
             quit_program()
         else:

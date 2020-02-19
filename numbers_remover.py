@@ -1,15 +1,15 @@
 import os
 from utilities import file_iterator, request_permission
 
-def search_directories(path):
-    file_paths = file_iterator(path)
+def search_directories(dir):
+    file_paths = file_iterator(dir)
     file_changes = []
-    for file_path in file_paths:
-        file_dir, file_name = os.path.split(file_path)
+    for path in file_paths:
+        file_dir, file_name = os.path.split(path)
         if file_name[0:2].isdigit() and file_name[2].isspace():
             new_name = file_name[3:]
             new_path = os.path.join(file_dir, new_name)
-            file_info = {'old_name': file_name, 'new_name': new_name, 'old_path': file_path, 'new_path': new_path}
+            file_info = {'old_name': file_name, 'new_name': new_name, 'old_path': path, 'new_path': new_path}
             file_changes.append(file_info)
     validate_files(file_changes)
 

@@ -8,17 +8,17 @@ from track import Track
 class Playlist:
     _counter = 0
 
-    def __init__(self, path):
+    def __init__(self, dir):
         self._name = 'playlist'
-        self._path = path
+        self._dir = dir
         self._all_artists = []
         Playlist._counter += 1
         self._create_playlist()
 
     def _create_playlist(self):
-        file_paths = file_iterator(self._path)
-        for file_path in file_paths:
-            self._create_info(file_path)
+        file_paths = file_iterator(self._dir)
+        for path in file_paths:
+            self._create_info(path)
 
     def _create_info(self, path):
         audio = EasyID3(path)
@@ -66,8 +66,8 @@ class Playlist:
     def set_name(self, name):
         self._name = name
 
-    def get_path(self):
-        return self._path
+    def get_dir(self):
+        return self._dir
 
     def get_artists(self):
         return self._all_artists
