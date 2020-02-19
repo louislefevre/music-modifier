@@ -1,7 +1,6 @@
-from musicmodifier.numbers_remover import search_directories
-from musicmodifier.utilities import quit_program
-from musicmodifier.playlist_handler import display_playlist, convert_playlist, combine_playlist
 from musicmodifier.playlist import Playlist
+from musicmodifier.playlist_handler import display_playlist, convert_playlist, combine_playlist, remove_numbers
+from musicmodifier.utilities import quit_program
 
 
 def print_features():
@@ -30,11 +29,8 @@ def main():
         elif user_input == 'add':
             combine_playlist(playlist)
         elif user_input == 'remove':
-            search_directories(directory)
+            remove_numbers(playlist)
         elif user_input == 'exit':
             quit_program()
         else:
             print('Invalid input - enter one of the feature names listed above.')
-
-
-
