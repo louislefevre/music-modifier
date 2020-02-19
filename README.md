@@ -12,6 +12,7 @@ Currently only works with mp3 files.
 - Add feature to convert all 'Singles' to 'EP'
 - Add ability to enter multiple URLs for various YouTube videos, download the files as MP3s, and also include all the tag information automatically (maybe make as separate application?).
 - Add ability to automatically fill in tag information by scraping from internet, maybe a particular website?
+- Rework numbers_remover so that its implemented by playlist_handler.
 
 ## Miscellaneous
 - Naming conventions should be followed as defined here:  
