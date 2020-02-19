@@ -1,7 +1,7 @@
 from musicmodifier.numbers_remover import search_directories
-from musicmodifier.files_viewer import display_playlist, file_to_text
-from musicmodifier.add_music import add_tracks
-from musicmodifier.utilities import quit_program, input_directory
+from musicmodifier.utilities import quit_program
+from musicmodifier.playlist_handler import display_playlist, convert_playlist, combine_playlist
+from musicmodifier.playlist import Playlist
 
 
 def print_features():
@@ -19,18 +19,22 @@ def print_features():
 
 def main():
     print_features()
-    directory = input_directory()  # 'D:\Libraries\Music\iTunes\iTunes Media\Testing\MusicTest'
-    while():
+    directory = 'D:\Libraries\Music\iTunes\iTunes Media\Testing\MusicTest'  # input_directory()
+    playlist = Playlist(directory)
+    while True:
         user_input: str = input('Select a feature: ').lower()
         if user_input == 'playlist':
-            display_playlist(directory)
+            display_playlist(playlist)
         elif user_input == 'text':
-            file_to_text(directory)
+            convert_playlist(playlist)
         elif user_input == 'add':
-            add_tracks(directory)
+            combine_playlist(playlist)
         elif user_input == 'remove':
             search_directories(directory)
         elif user_input == 'exit':
             quit_program()
         else:
             print('Invalid input - enter one of the feature names listed above.')
+
+
+
