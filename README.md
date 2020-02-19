@@ -8,6 +8,8 @@ Currently only works with mp3 files.
 - Before running getArtistData, run a check to ensure all files have the relevant information.  
 - Get .m4a files to work in playlist_data.
 - Attach original path to track objects.
+- Add feature to scrape internet for album art, save image and place it in album folder.
+- Add feature to convert all 'Singles' to 'EP'
 
 ## Miscellaneous
 - Naming conventions should be followed as defined here:  
