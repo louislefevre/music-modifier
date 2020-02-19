@@ -6,10 +6,10 @@ from musicmodifier.playlist import Playlist
 
 def print_features():
     print('----------------------Music Modifier----------------------')
-    print('Playlist - View all the artists, albums and tracks.')
-    print('Text - Write a log of your entire playlist to a text file.')
-    print('Add - Takes a source folder and adds its contents into music folder.')
-    print('Remove - Removes numbers at the beginning of song names.')
+    print('Display - Show all the artists, albums and tracks.')
+    print('Convert - Create a text log of your entire playlist.')
+    print('Combine - Takes a playlist and combines its contents with the original playlist.')
+    print('Remove - Removes numbers at the beginning of track file names.')
     print('Exit - Terminates the program.')
     print('')
     print('Begin by entering the path containing your playlist, and then')
@@ -23,9 +23,9 @@ def main():
     playlist = Playlist(directory)
     while True:
         user_input: str = input('Select a feature: ').lower()
-        if user_input == 'playlist':
+        if user_input == 'display':
             display_playlist(playlist)
-        elif user_input == 'text':
+        elif user_input == 'convert':
             convert_playlist(playlist)
         elif user_input == 'add':
             combine_playlist(playlist)
