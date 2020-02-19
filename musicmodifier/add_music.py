@@ -14,15 +14,15 @@ def add_tracks(dest_directory):
 
 
 def compare_playlists(src, dest):
-    dest_dir = dest.get_directory()
-    src_dir = src.get_directory()
+    dest_directory = dest.get_directory()
+    src_directory = src.get_directory()
     for src_artist in src.get_artists():
         for src_album in src_artist.get_albums():
             for src_track in src_album.get_tracks():
-                artist_path = dest_dir + '\\' + src_artist.get_name()
+                artist_path = dest_directory + '\\' + src_artist.get_name()
                 album_path = artist_path + '\\' + src_album.get_name()
                 track_path = album_path + '\\' + src_track.get_name() + EXTENSIONS
-                src_path = src_dir + '\\' + src_track.get_name() + EXTENSIONS
+                src_path = src_directory + '\\' + src_track.get_name() + EXTENSIONS
                 dest_path = track_path
                 if not os.path.exists(artist_path):
                     create_folder(artist_path)
