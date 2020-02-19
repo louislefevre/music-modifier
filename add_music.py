@@ -1,13 +1,13 @@
 import os
 import shutil
-from playlist_data import new_playlist
+from playlist import Playlist
 from files_viewer import display_playlist
 from utilities import request_permission, input_path, extensions
 
 def add_tracks(dest_path):
     src_path = input_path()
-    src = new_playlist(src_path)
-    dest = new_playlist(dest_path)
+    src = Playlist(src_path)
+    dest = Playlist(dest_path)
     if not request_permission():
         return
     compare_playlists(src, dest)

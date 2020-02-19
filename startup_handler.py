@@ -18,7 +18,7 @@ def print_features():
 
 def main():
     print_features()
-    path = input_path() # path = 'D:\Libraries\Music\iTunes\iTunes Media\Testing\DestinationTest'
+    path = 'D:\Libraries\Music\iTunes\iTunes Media\Testing\MusicTest' # input_path()
     while(True):
         user_input = input('Select a feature: ').lower()
         if user_input == 'playlist':

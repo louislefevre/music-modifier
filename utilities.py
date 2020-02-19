@@ -6,7 +6,7 @@ def extensions():
     return EXTENSIONS
 
 def file_iterator(path):
-    file_types = ('.mp3')
+    file_types = (EXTENSIONS)
     file_paths = []
     for sub_dir, dirs, files in os.walk(path):
         for file in files:

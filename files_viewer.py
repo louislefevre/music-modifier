@@ -1,7 +1,10 @@
-from playlist_data import new_playlist, Playlist, Artist, Album, Track
+from playlist import Playlist
+from artist import Artist
+from album import Album
+from track import Track
 
 def display_playlist(path):
-    playlist = new_playlist(path)
+    playlist = Playlist(path)
     print_playlist(playlist)
 
 def print_playlist(playlist):
