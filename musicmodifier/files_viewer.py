@@ -1,7 +1,7 @@
-from playlist import Playlist
-from artist import Artist
-from album import Album
-from track import Track
+from musicmodifier.playlist import Playlist
+from musicmodifier.artist import Artist
+from musicmodifier.album import Album
+from musicmodifier.track import Track
 
 def display_playlist(dir):
     playlist = Playlist(dir)

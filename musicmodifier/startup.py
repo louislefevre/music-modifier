@@ -1,8 +1,8 @@
-import sys
-from numbers_remover import search_directories
-from files_viewer import display_playlist, file_to_text
-from add_music import add_tracks
-from utilities import input_path, quit_program
+from musicmodifier.numbers_remover import search_directories
+from musicmodifier.files_viewer import display_playlist, file_to_text
+from musicmodifier.add_music import add_tracks
+from musicmodifier.utilities import quit_program
+
 
 def print_features():
     print('----------------------Music Modifier----------------------')
@@ -15,6 +15,7 @@ def print_features():
     print('Begin by entering the path containing your playlist, and then')
     print('select a feature by typing its name in as a command.')
     print('----------------------------------------------------------')
+
 
 def main():
     print_features()

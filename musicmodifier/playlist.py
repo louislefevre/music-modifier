@@ -1,9 +1,8 @@
-import os
 from mutagen.easyid3 import EasyID3
-from utilities import file_iterator
-from artist import Artist
-from album import Album
-from track import Track
+from musicmodifier.utilities import file_iterator
+from musicmodifier.artist import Artist
+from musicmodifier.album import Album
+from musicmodifier.track import Track
 
 class Playlist:
     _counter = 0

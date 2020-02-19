@@ -1,5 +1,5 @@
 import os
-from utilities import file_iterator, request_permission
+from musicmodifier.utilities import file_iterator, request_permission
 
 def search_directories(dir):
     file_paths = file_iterator(dir)

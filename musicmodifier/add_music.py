@@ -1,8 +1,7 @@
 import os
 import shutil
-from playlist import Playlist
-from files_viewer import display_playlist
-from utilities import request_permission, input_dir, extensions
+from musicmodifier.playlist import Playlist
+from musicmodifier.utilities import request_permission, input_dir, extensions
 
 def add_tracks(dest_dir):
     src_dir = input_dir()
