@@ -21,7 +21,7 @@ def main():
     print_features()
     directory = input_directory()  # 'D:\Libraries\Music\iTunes\iTunes Media\Testing\MusicTest'
     while():
-        user_input = input('Select a feature: ').lower()
+        user_input: str = input('Select a feature: ').lower()
         if user_input == 'playlist':
             display_playlist(directory)
         elif user_input == 'text':

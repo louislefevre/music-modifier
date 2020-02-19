@@ -16,7 +16,7 @@ def file_iterator(path):
 
 def request_permission():
     while True:
-        request = input('Do you want to proceed? [yes/no]').lower()
+        request: str = input('Do you want to proceed? [yes/no]').lower()
         if request == 'yes':
             return True
         elif request == 'no':
@@ -28,7 +28,7 @@ def request_permission():
 
 def input_directory():
     while True:
-        directory = input('Enter the directory: ')
+        directory: str = input('Enter the directory: ')
         if os.path.isdir(directory):
             break
         elif directory == 'exit':

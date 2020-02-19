@@ -42,7 +42,7 @@ def file_to_text(directory):
 
 
 def create_file(playlist):
-    name = input('Enter playlist name (leave blank for default): ').strip()
+    name: str = input('Enter playlist name (leave blank for default): ').strip()
     if not name:
         name = playlist.get_name()
     file = open(name + '.txt', 'w')
