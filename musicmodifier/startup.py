@@ -1,15 +1,15 @@
 from musicmodifier.numbers_remover import search_directories
 from musicmodifier.files_viewer import display_playlist, file_to_text
 from musicmodifier.add_music import add_tracks
-from musicmodifier.utilities import quit_program
+from musicmodifier.utilities import quit_program, input_directory
 
 
 def print_features():
     print('----------------------Music Modifier----------------------')
     print('Playlist - View all the artists, albums and tracks.')
-    print('ToText - Write a log of your entire playlist to a text file.')
-    print('AddTracks - Takes a source folder and adds its contents into music folder.')
-    print('RemoveNumbers - Removes numbers at the beginning of song names.')
+    print('Text - Write a log of your entire playlist to a text file.')
+    print('Add - Takes a source folder and adds its contents into music folder.')
+    print('Remove - Removes numbers at the beginning of song names.')
     print('Exit - Terminates the program.')
     print('')
     print('Begin by entering the path containing your playlist, and then')
@@ -19,17 +19,17 @@ def print_features():
 
 def main():
     print_features()
-    dir = 'D:\Libraries\Music\iTunes\iTunes Media\Testing\MusicTest' # input_path()
-    while(True):
+    directory = input_directory()  # 'D:\Libraries\Music\iTunes\iTunes Media\Testing\MusicTest'
+    while():
         user_input = input('Select a feature: ').lower()
         if user_input == 'playlist':
-            display_playlist(dir)
-        elif user_input == 'totext':
-            file_to_text(dir)
-        elif user_input == 'addtracks':
-            add_tracks(dir)
-        elif user_input == 'removenumbers':
-            search_directories(dir)
+            display_playlist(directory)
+        elif user_input == 'text':
+            file_to_text(directory)
+        elif user_input == 'add':
+            add_tracks(directory)
+        elif user_input == 'remove':
+            search_directories(directory)
         elif user_input == 'exit':
             quit_program()
         else:

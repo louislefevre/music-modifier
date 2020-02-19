@@ -1,8 +1,9 @@
 import os
 from musicmodifier.utilities import file_iterator, request_permission
 
-def search_directories(dir):
-    file_paths = file_iterator(dir)
+
+def search_directories(directory):
+    file_paths = file_iterator(directory)
     file_changes = []
     for path in file_paths:
         file_dir, file_name = os.path.split(path)
@@ -12,6 +13,7 @@ def search_directories(dir):
             file_info = {'old_name': file_name, 'new_name': new_name, 'old_path': path, 'new_path': new_path}
             file_changes.append(file_info)
     validate_files(file_changes)
+
 
 def validate_files(file_changes):
     if not file_changes:
@@ -24,6 +26,7 @@ def validate_files(file_changes):
     for item in file_changes:
         rename_files(item)
 
+
 def rename_files(item):
     try:
         os.rename(item.get('old_path'), item.get('new_path'))
@@ -34,6 +37,7 @@ def rename_files(item):
     except FileExistsError:
         print('')
         print(f'File name "{item.get("new_name")}" already exists, skipping...')
+
 
 def list_changes(file_changes):
     for item in file_changes:

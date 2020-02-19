@@ -4,18 +4,19 @@ from musicmodifier.artist import Artist
 from musicmodifier.album import Album
 from musicmodifier.track import Track
 
+
 class Playlist:
     _counter = 0
 
-    def __init__(self, dir):
+    def __init__(self, directory):
         self._name = 'playlist'
-        self._dir = dir
+        self._directory = directory
         self._all_artists = []
         Playlist._counter += 1
         self._create_playlist()
 
     def _create_playlist(self):
-        file_paths = file_iterator(self._dir)
+        file_paths = file_iterator(self._directory)
         for path in file_paths:
             self._create_info(path)
 
@@ -24,7 +25,7 @@ class Playlist:
         title = ''.join(audio['title'])
         artist = ''.join(audio['artist'])
         album = ''.join(audio['album'])
-        track = {'title':title, 'artist':artist, 'album':album}
+        track = {'title': title, 'artist': artist, 'album': album}
         self._create_artist(track)
 
     def _create_artist(self, track):
@@ -50,12 +51,6 @@ class Playlist:
             track = Track(track_name)
             album.add_track(track)
 
-    def _check_exists(self, name, array):
-        for item in array:
-            if item.get_name() == name:
-                return item
-        return None
-
     def _add_artist(self, artist):
         self._all_artists.append(artist)
 
@@ -65,11 +60,18 @@ class Playlist:
     def set_name(self, name):
         self._name = name
 
-    def get_dir(self):
-        return self._dir
+    def get_directory(self):
+        return self._directory
 
     def get_artists(self):
         return self._all_artists
+
+    @staticmethod
+    def _check_exists(name, array):
+        for item in array:
+            if item.get_name() == name:
+                return item
+        return None
 
     @staticmethod
     def get_counter():

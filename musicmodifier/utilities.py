@@ -2,11 +2,9 @@ import os
 
 EXTENSIONS = '.mp3'
 
-def extensions():
-    return EXTENSIONS
 
 def file_iterator(path):
-    file_types = (EXTENSIONS)
+    file_types = EXTENSIONS
     file_paths = []
     for sub_dir, dirs, files in os.walk(path):
         for file in files:
@@ -14,6 +12,7 @@ def file_iterator(path):
                 full_path = os.path.join(sub_dir, file)
                 file_paths.append(full_path)
     return file_paths
+
 
 def request_permission():
     while True:
@@ -26,16 +25,18 @@ def request_permission():
         else:
             print('Invalid input - please enter "yes" or "no".')
 
-def input_dir():
+
+def input_directory():
     while True:
-        dir = input('Enter the directory: ')
-        if os.path.isdir(dir):
+        directory = input('Enter the directory: ')
+        if os.path.isdir(directory):
             break
-        elif dir == 'exit':
+        elif directory == 'exit':
             quit_program()
         else:
             print('Invalid directory.')
-    return dir
+    return directory
+
 
 def quit_program():
     print('Thank you for using Music Modifier, goodbye...')

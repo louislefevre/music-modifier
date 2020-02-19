@@ -2,7 +2,7 @@ import io
 import os
 from setuptools import find_packages, setup
 
-NAME = 'musicmodifier'
+NAME = 'music modifier'
 DESCRIPTION = 'Simple script for modifying and viewing music files.'
 URL = 'https://github.com/louislefevre/music-modifier'
 EMAIL = 'louislefev@gmail.com'
