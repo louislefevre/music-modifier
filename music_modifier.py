@@ -1,4 +1,4 @@
-from startup_handler import main
+from startup import main
 
 if __name__ == '__main__':
     main()
