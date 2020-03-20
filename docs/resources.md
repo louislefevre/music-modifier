@@ -1,0 +1,10 @@
+# Resources
+- [Structuring Your Project](https://docs.python-guide.org/writing/structure/)
+- [Programmatically add songs to iTunes](https://stackoverflow.com/questions/15590173/programmatically-add-songs-to-itunes/15590268#15590268)
+- [Create playlist in iTunes with Python and Scripting Bridge](https://stackoverflow.com/questions/12964766/create-playlist-in-itunes-with-python-and-scripting-bridge)
+- [How to add a track to an iTunes playlist using Python and Scripting Bridge](https://stackoverflow.com/questions/12971306/how-to-add-a-track-to-an-itunes-playlist-using-python-and-scripting-bridge)
+- [Cracked it: automatically adding files to iTunes without copying](http://blog.ripperdoc.net/2012/01/28/cracked-it-automatically-adding-files-to-itunes-without-copying/)
+- [iTunes & AppleScript Basics](https://dougscripts.com/itunes/itinfo/info01.php)
+- [How to manage your digital music library](https://www.techhive.com/article/3201150/how-to-manage-your-digital-music-library.html)
+- [Tkinter](https://wiki.python.org/moin/TkInter)
+- [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/)
