@@ -1,4 +1,4 @@
-# To-Do:
+# To-Do
 - Rename files based on song title.
 - Run a check to ensure all files have the relevant information before gathering.
 - Get .m4a files to work.
